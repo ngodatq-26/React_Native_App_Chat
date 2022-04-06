@@ -11,11 +11,13 @@
 import React from 'react'
 import { StyleSheet, Text, View } from 'react-native';
 import LoginScreen from './modules/auth/screens/LoginScreen';
+import HomeScreen from './modules/Home/screens/HomeScreens';
+
 
 const App = () =>{
   return (
     <View style={styles.body}>
-      <LoginScreen />
+      <HomeScreen />
     </View>
   )
 }
