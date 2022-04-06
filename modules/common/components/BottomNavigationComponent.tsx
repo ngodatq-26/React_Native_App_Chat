@@ -5,22 +5,9 @@ import { NavigationContainer } from '@react-navigation/native';
 import HomeComponent from '../../Home/components/HomeComponent';
 import Icon from 'react-native-vector-icons/FontAwesome';
 import ProfileComponent from '../../Home/components/ProfileComponent'
+import StatusComponent from '../../Home/components/StatusComponent';
 
 const Tab= createBottomTabNavigator();
-
-const MusicRoute = () => <Text>Music</Text>;
-
-const AlbumsRoute = () => <Text>Albums</Text>;
-
-const RecentsRoute = () => <Text>Recents</Text>
-
-const Account = ()=> <Text>Account</Text>
-
-
-const homeName = "Home";
-const detailsName = "Details";
-const settingsName = "Settings";
-
 
 const BottomNavigationComponent = () =>{
     return (
@@ -35,7 +22,7 @@ const BottomNavigationComponent = () =>{
             />
             <Tab.Screen 
                 name="Status" 
-                component={MusicRoute}
+                component={StatusComponent}
                 options={{
                     tabBarIcon: ({size, color}) => (<Icon name="heartbeat" color={color} size={size} />)
                 }}

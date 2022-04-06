@@ -117,7 +117,8 @@ const styles = StyleSheet.create({
         marginTop : 5,
         padding : 10,
         borderBottomColor : 'gray',
-        borderBottomWidth : 0.3
+        borderBottomWidth : 0.3,
+        cursor : 'pointer'
     },
     viewName : {
         display : 'flex',
@@ -132,8 +133,8 @@ const styles = StyleSheet.create({
         color : 'black'
     },
     search :{
-        borderRadius : 20,
-        margin : 10
+        borderRadius : 100,
+        margin : 10,
     },
     Appbar : {
         backgroundColor : 'white'
