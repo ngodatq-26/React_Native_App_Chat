@@ -2,7 +2,7 @@ import React from 'react';
 import {  Keyboard, KeyboardAvoidingView, Platform, StyleSheet, Text, TouchableWithoutFeedback, useWindowDimensions, View } from 'react-native';
 import { Card, TextInput,Button } from 'react-native-paper';
 
-const LoginForm = () =>{
+const LoginForm = (props : any) =>{
 
   const formValues = React.useState({
     email : '',
@@ -31,13 +31,13 @@ const LoginForm = () =>{
           />
         </View>
         <Button mode="contained" 
-                onPress={() => console.log('Pressed')} 
+                onPress={() => props.navigation.native('Home')} 
                 style={[styles.cusButton,{marginLeft : height*0.14}]}
                 theme={{ roundness: 5 }}
         >Login
         </Button>
         <Button mode="contained" 
-                onPress={() => console.log('Pressed')} 
+                onPress={() => props.navigation.native('Home')} 
                 style={[styles.cusButton,{marginLeft : height*0.14}]}
                 theme={{ roundness: 5 }}
         >Register

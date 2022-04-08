@@ -12,12 +12,12 @@ import React from 'react'
 import { StyleSheet, Text, View } from 'react-native';
 import LoginScreen from './modules/auth/screens/LoginScreen';
 import HomeScreen from './modules/Home/screens/HomeScreens';
-
+import {createStackNavigator} from '@react-navigation/stack';
 
 const App = () =>{
   return (
     <View style={styles.body}>
-      <HomeScreen />
+      <LoginScreen />
     </View>
   )
 }
