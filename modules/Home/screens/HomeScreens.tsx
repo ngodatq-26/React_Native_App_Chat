@@ -12,12 +12,9 @@ const HomeScreen = () =>{
     const {height} = useWindowDimensions();
 
     return (   
-           <View style= {[styles.container,{height : height}]}>
-              <View style={[styles.navigationBottom]}>
-                    <BottomNavigationComponent/> 
-              </View>
-           </View>
-       
+
+     <BottomNavigationComponent/> 
+
     )
 }
 

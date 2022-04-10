@@ -1,14 +1,16 @@
 import { useNavigation } from '@react-navigation/core';
+import { NativeStackNavigationProp } from '@react-navigation/native-stack';
 import React from 'react';
-import { StyleSheet, Text, useWindowDimensions, View } from 'react-native';
+import { StyleSheet, Text, TouchableOpacity, useWindowDimensions, View } from 'react-native';
 import { ScrollView } from 'react-native';
 import { Appbar, Avatar, Switch } from 'react-native-paper';
 import Icon from 'react-native-vector-icons/FontAwesome5';
 import Ionicons from 'react-native-vector-icons/Ionicons'
+import { StackNavigatorList } from '../../../types';
 
 const ProfileComponent = () =>{
+  const navigation = useNavigation<NativeStackNavigationProp<StackNavigatorList>>();
   const {height} = useWindowDimensions();
-  const navigation = useNavigation()
   const [switchButton,setSwitchButton] = React.useState(true);
   const [notification,setNotification] = React.useState(true);
   
@@ -67,7 +69,7 @@ const ProfileComponent = () =>{
            </View>
            <View style={styles.icon}><Switch value={notification} onValueChange={toggleNotification}/></View>
         </View>
-        <View style={styles.viewSet}>
+        <TouchableOpacity style={styles.viewSet} onPress={() => navigation.navigate("Login")}>
            <View style={styles.icon}>
              <Ionicons name="log-out" size={30}/>
            </View>
@@ -75,7 +77,7 @@ const ProfileComponent = () =>{
              <Text>Log out</Text>
            </View>
            <View style={styles.icon}></View>
-        </View>
+        </TouchableOpacity>
       </ScrollView>
     </View>
   )

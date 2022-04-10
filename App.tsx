@@ -15,7 +15,6 @@ import {createStackNavigator} from '@react-navigation/stack';
 import { NavigationContainer } from '@react-navigation/native';
 import { Provider } from 'react-redux';
 import store from "../AwesomeTSProject/redux/configureStore"
-import BottomNavigationComponent from './modules/common/components/BottomNavigationComponent';
 import { MainStackNavigator } from './Stack';
 
 

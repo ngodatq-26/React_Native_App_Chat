@@ -49,7 +49,7 @@ const LoginForm = () =>{
         </View>
         <Button mode="contained" 
                 onPress = {() =>{
-                  navigation.navigate("MainScreen",{screen : 'Home'})
+                  navigation.navigate("Main",{screen : 'Home'})
                 }}
                 style={[styles.cusButton,{marginLeft : height*0.14}]}
                 theme={{ roundness: 5 }}
