@@ -1,12 +1,3 @@
-/**
- * Sample React Native App
- * https://github.com/facebook/react-native
- *
- * Generated with the TypeScript template
- * https://github.com/react-native-community/react-native-template-typescript
- *
- * @format
- */
 import React from 'react'
 import { StyleSheet, Text, View } from 'react-native';
 import LoginScreen from './modules/auth/screens/LoginScreen';
@@ -16,17 +7,16 @@ import { NavigationContainer } from '@react-navigation/native';
 import { Provider } from 'react-redux';
 import store from "../AwesomeTSProject/redux/configureStore"
 import BottomNavigationComponent from './modules/common/components/BottomNavigationComponent';
-import { MainStackNavigator } from './Stack';
+import { StackNavigatorList } from './types';
 
 
+const Stack = createStackNavigator<StackNavigatorList>();
 
-const App = () =>{
-
+export const MainStackNavigator = () =>{
   return (
-    <NavigationContainer independent={true}>
-       <MainStackNavigator />
-    </NavigationContainer>
+    <Stack.Navigator  screenOptions={{ headerShown: false }} >
+      <Stack.Screen name="Login" component={LoginScreen} />
+      <Stack.Screen name="MainScreen" component={BottomNavigationComponent} />
+    </Stack.Navigator>
   )
 }
-
-export default App;

@@ -8,14 +8,6 @@ import BottomNavigationComponent from '../../common/components/BottomNavigationC
 
 const Tab= createBottomTabNavigator();
 
-const MusicRoute = () => <Text>Music</Text>;
-
-const AlbumsRoute = () => <Text>Albums</Text>;
-
-const RecentsRoute = () => <Text>Recents</Text>
-
-
-
 const HomeScreen = () =>{
     const {height} = useWindowDimensions();
 

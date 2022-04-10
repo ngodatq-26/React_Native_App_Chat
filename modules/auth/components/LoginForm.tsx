@@ -1,14 +1,29 @@
 import React from 'react';
 import {  Keyboard, KeyboardAvoidingView, Platform, StyleSheet, Text, TouchableWithoutFeedback, useWindowDimensions, View } from 'react-native';
 import { Card, TextInput,Button } from 'react-native-paper';
+import { NavigationContainer} from '@react-navigation/native';
+import { Actions } from 'react-native-router-flux';
+import { useNavigation } from '@react-navigation/core';
+import {NativeStackNavigationProp} from '@react-navigation/native-stack';
+import { StackNavigatorList } from '../../../types';
 
-const LoginForm = (props : any) =>{
+const LoginForm = () =>{
 
-  const formValues = React.useState({
+  const navigation = useNavigation<NativeStackNavigationProp<StackNavigatorList>>();
+
+  const [formValues,setFormValues] = React.useState({
     email : '',
     password : ''
   })
   
+  const handleEmail = (e : any) =>{
+    setFormValues({...formValues,email : e})
+  }
+
+  const handlePassword = (e : any) =>{
+    setFormValues({...formValues,password : e})
+  }
+
   const {height} = useWindowDimensions();
     return (
       <View>
@@ -17,8 +32,10 @@ const LoginForm = (props : any) =>{
           <TextInput
               label="Email"
               mode="flat"
+              value={formValues.email}
               theme={{ roundness: 0 }}
               placeholder="mời bạn nhập email"
+              onChange={handleEmail}
           />
         </View>
         <View style={styles.viewInput}>
@@ -31,13 +48,15 @@ const LoginForm = (props : any) =>{
           />
         </View>
         <Button mode="contained" 
-                onPress={() => props.navigation.native('Home')} 
+                onPress = {() =>{
+                  navigation.navigate("MainScreen",{screen : 'Home'})
+                }}
                 style={[styles.cusButton,{marginLeft : height*0.14}]}
                 theme={{ roundness: 5 }}
         >Login
         </Button>
         <Button mode="contained" 
-                onPress={() => props.navigation.native('Home')} 
+                
                 style={[styles.cusButton,{marginLeft : height*0.14}]}
                 theme={{ roundness: 5 }}
         >Register

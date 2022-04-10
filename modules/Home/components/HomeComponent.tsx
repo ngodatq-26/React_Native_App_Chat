@@ -117,8 +117,7 @@ const styles = StyleSheet.create({
         marginTop : 5,
         padding : 10,
         borderBottomColor : 'gray',
-        borderBottomWidth : 0.3,
-        cursor : 'pointer'
+        borderBottomWidth : 0.3
     },
     viewName : {
         display : 'flex',

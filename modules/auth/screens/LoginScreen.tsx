@@ -2,7 +2,7 @@ import React from 'react';
 import { Image, StyleSheet, Text, useWindowDimensions, View } from 'react-native';
 import { Card, TextInput } from 'react-native-paper';
 import LoginForm from '../components/LoginForm';
-
+import { createStackNavigator } from '@react-navigation/stack';
 
 const LoginScreen= () =>{
 

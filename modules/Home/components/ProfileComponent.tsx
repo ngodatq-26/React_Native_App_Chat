@@ -1,3 +1,4 @@
+import { useNavigation } from '@react-navigation/core';
 import React from 'react';
 import { StyleSheet, Text, useWindowDimensions, View } from 'react-native';
 import { ScrollView } from 'react-native';
@@ -7,9 +8,10 @@ import Ionicons from 'react-native-vector-icons/Ionicons'
 
 const ProfileComponent = () =>{
   const {height} = useWindowDimensions();
+  const navigation = useNavigation()
   const [switchButton,setSwitchButton] = React.useState(true);
   const [notification,setNotification] = React.useState(true);
-
+  
   const toggleNotification = () =>{
     setNotification(!notification)
   }
@@ -19,7 +21,7 @@ const ProfileComponent = () =>{
   return (
     <View style= {styles.container}>
       <Appbar.Header style={styles.Appbar}>
-               <Appbar.BackAction />
+               <Appbar.BackAction onPress={() => navigation.goBack()}/>
                <Appbar.Content title="Profile" />
       </Appbar.Header>
       <ScrollView>

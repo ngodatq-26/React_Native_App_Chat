@@ -6,13 +6,16 @@ import HomeComponent from '../../Home/components/HomeComponent';
 import Icon from 'react-native-vector-icons/FontAwesome';
 import ProfileComponent from '../../Home/components/ProfileComponent'
 import StatusComponent from '../../Home/components/StatusComponent';
+import { useNavigation } from '@react-navigation/core'
+import { TabNavigatorParamsList } from '../../../types';
+
 
 const Tab= createBottomTabNavigator();
 
 const BottomNavigationComponent = () =>{
+
     return (
-        <NavigationContainer>
-                <Tab.Navigator screenOptions={{ headerShown: false }}>
+        <Tab.Navigator screenOptions={{ headerShown: false }}>
             <Tab.Screen
                 name="Home"
                 component={HomeComponent}
@@ -35,7 +38,6 @@ const BottomNavigationComponent = () =>{
                 }}
             />
         </Tab.Navigator>
-        </NavigationContainer>
     )
 }
 
