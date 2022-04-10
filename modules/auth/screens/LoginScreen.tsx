@@ -5,14 +5,14 @@ import LoginForm from '../components/LoginForm';
 import { createStackNavigator } from '@react-navigation/stack';
 
 const LoginScreen= () =>{
-
+    
     const {height} = useWindowDimensions();
 
     return (
         <View style={styles.root}>
           <Card style= {[styles.cardView,{height : height *0.9}]}>
               <View style={styles.imageView}>
-                <Image source={require('../../../src/images/Logo.jpg')} 
+                <Image source={require('../../../src/images/Logo.png')} 
                         style={[styles.logo,{height : height*0.3 }]}
                         resizeMode ="contain"
                 />
@@ -42,7 +42,7 @@ const styles = StyleSheet.create({
     },
     logo : {
         maxWidth : 340,
-        maxHeight : 120,
+        maxHeight : 150,
     },
     imageView :{
         alignItems : 'center',

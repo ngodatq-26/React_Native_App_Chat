@@ -3,23 +3,29 @@ import { NativeStackNavigationProp } from '@react-navigation/native-stack';
 import React from 'react';
 import { StyleSheet, Text, TouchableOpacity, useWindowDimensions, View } from 'react-native';
 import { ScrollView } from 'react-native';
-import { Appbar, Avatar, Switch } from 'react-native-paper';
+import Modal from 'react-native-modal/dist/modal';
+import { Appbar, Avatar, Button, Switch } from 'react-native-paper';
 import Icon from 'react-native-vector-icons/FontAwesome5';
 import Ionicons from 'react-native-vector-icons/Ionicons'
 import { StackNavigatorList } from '../../../types';
-
 const ProfileComponent = () =>{
+  
   const navigation = useNavigation<NativeStackNavigationProp<StackNavigatorList>>();
   const {height} = useWindowDimensions();
   const [switchButton,setSwitchButton] = React.useState(true);
   const [notification,setNotification] = React.useState(true);
-  
+  const [visibleModal, setVisibleModal] = React.useState(false);
+
+  const showModal = () => setVisibleModal(true);
+  const hideModal = () => setVisibleModal(false);
+
   const toggleNotification = () =>{
     setNotification(!notification)
   }
   const toggle = () =>{
     setSwitchButton(!switchButton)
   }
+
   return (
     <View style= {styles.container}>
       <Appbar.Header style={styles.Appbar}>
@@ -27,6 +33,13 @@ const ProfileComponent = () =>{
                <Appbar.Content title="Profile" />
       </Appbar.Header>
       <ScrollView>
+        <Modal isVisible={visibleModal} style={styles.modal}>
+          <View><Text>you want exit this app</Text></View>   
+          <View>
+            <Button mode="contained" onPress={()=> navigation.navigate('Login')}>Ok</Button>
+            <Button mode="contained" onPress={hideModal}>Cancel</Button>
+          </View>
+        </Modal>
         <View style={styles.avatar}>
           <Avatar.Image size={height*0.2} source={require('../../../src/images/Avatar/Profile.jpg')} />
           <View><Text style={{color : 'black',fontSize :20}}>TCheng</Text></View>
@@ -69,7 +82,7 @@ const ProfileComponent = () =>{
            </View>
            <View style={styles.icon}><Switch value={notification} onValueChange={toggleNotification}/></View>
         </View>
-        <TouchableOpacity style={styles.viewSet} onPress={() => navigation.navigate("Login")}>
+        <TouchableOpacity style={styles.viewSet} onPress={showModal}>
            <View style={styles.icon}>
              <Ionicons name="log-out" size={30}/>
            </View>
@@ -111,6 +124,10 @@ const styles = StyleSheet.create({
     display : 'flex',
     flex : 5,
     margin : 20
+  },
+  modal : {
+    backgroundColor : 'white',
+    display :'flex'
   }
 })
 

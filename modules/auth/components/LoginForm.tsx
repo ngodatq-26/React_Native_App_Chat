@@ -6,6 +6,7 @@ import { Actions } from 'react-native-router-flux';
 import { useNavigation } from '@react-navigation/core';
 import {NativeStackNavigationProp} from '@react-navigation/native-stack';
 import { StackNavigatorList } from '../../../types';
+import Ionicons from'react-native-vector-icons/Ionicons';
 
 const LoginForm = () =>{
 
@@ -51,14 +52,15 @@ const LoginForm = () =>{
                 onPress = {() =>{
                   navigation.navigate("Main",{screen : 'Home'})
                 }}
-                style={[styles.cusButton,{marginLeft : height*0.14}]}
-                theme={{ roundness: 5 }}
+                style={[styles.cusButton]}
+                theme={{ roundness: 0 }}
+                icon = "login"
         >Login
         </Button>
         <Button mode="contained" 
-                
-                style={[styles.cusButton,{marginLeft : height*0.14}]}
-                theme={{ roundness: 5 }}
+                icon="pencil"
+                style={[styles.cusButton]}
+                theme={{ roundness: 0 }}
         >Register
         </Button>
       </View>
@@ -67,11 +69,15 @@ const LoginForm = () =>{
 
 const styles = StyleSheet.create({
   cusButton :{
-    width : 180,
     marginBottom : 15
   },
   viewInput : {
     marginBottom : 15
+  },
+  textOr : {
+    justifyContent : "center",
+    fontSize : 20,
+    margin : 0
   }
 })
 export default LoginForm;
