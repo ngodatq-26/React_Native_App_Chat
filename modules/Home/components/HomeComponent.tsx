@@ -9,6 +9,7 @@ const HomeComponent = () =>{
     const handleChangeSearch = (e : any) =>{
         setSearch(e.target.value)
     }
+    
 
     return(
         <View>
