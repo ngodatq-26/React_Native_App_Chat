@@ -1,15 +1,31 @@
 import React from 'react';
 import { Image, StyleSheet, Text, useWindowDimensions, View } from 'react-native';
-import { Card, TextInput } from 'react-native-paper';
+import { ActivityIndicator, Card, TextInput } from 'react-native-paper';
 import LoginForm from '../components/LoginForm';
 import { createStackNavigator } from '@react-navigation/stack';
+import axios from 'axios';
+import { API_PATHS } from '../../../configs/Api';
+import { useNavigation } from '@react-navigation/native';
+import { NativeStackNavigationProp } from '@react-navigation/native-stack';
+import { StackNavigatorList } from '../../../types';
 
 const LoginScreen= () =>{
     
+    const [loading,setLoading] = React.useState(false);
+    const navigation = useNavigation<NativeStackNavigationProp<StackNavigatorList>>();
     const {height} = useWindowDimensions();
 
+    const onLogin = React.useCallback(async (email : string,password : string) =>{
+        setLoading(true);
+        await axios.post(API_PATHS.login,{email : email,password : password})
+        .then(user =>{
+            console.log(user)
+        }) 
+        setLoading(false)
+    },[])
     return (
         <View style={styles.root}>
+            {loading ? <ActivityIndicator animating={true} /> :
           <Card style= {[styles.cardView,{height : height *0.9}]}>
               <View style={styles.imageView}>
                 <Image source={require('../../../src/images/Logo.png')} 
@@ -18,9 +34,9 @@ const LoginScreen= () =>{
                 />
               </View>
               <View style={styles.formView}>
-                 <LoginForm />
+                 <LoginForm onLogin={onLogin} loading={loading}/>
               </View>
-          </Card>
+          </Card>}
        </View>
     )
 }

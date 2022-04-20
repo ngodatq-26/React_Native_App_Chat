@@ -3,6 +3,10 @@ import { View } from 'react-native';
 
 const SignUpScreen = () =>{
 
+    const onLogin = React.useCallback(()=>{
+        
+    },[])
+
     return (
         <View></View>
     )
