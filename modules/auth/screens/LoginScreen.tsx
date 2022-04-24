@@ -8,7 +8,7 @@ import { API_PATHS } from '../../../configs/Api';
 import { useNavigation } from '@react-navigation/native';
 import { NativeStackNavigationProp } from '@react-navigation/native-stack';
 import { StackNavigatorList } from '../../../types';
-
+import { fetchAPI } from '../../common/customAxios';
 const LoginScreen= () =>{
     
     const [loading,setLoading] = React.useState(false);
@@ -17,12 +17,17 @@ const LoginScreen= () =>{
 
     const onLogin = React.useCallback(async (email : string,password : string) =>{
         setLoading(true);
-        await axios.post(API_PATHS.login,{email : email,password : password})
+        await fetchAPI(API_PATHS.login,'POST',{email : email,password : password})
         .then(user =>{
-            console.log(user)
+            console.log(user);
+            navigation.navigate("Main",{screen : 'Home'})
+        }).catch((err)=>{
+            console.log(err);
+            navigation.navigate("Main",{screen : 'Home'})
         }) 
         setLoading(false)
     },[])
+
     return (
         <View style={styles.root}>
             {loading ? <ActivityIndicator animating={true} /> :
