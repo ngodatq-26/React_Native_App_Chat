@@ -5,7 +5,7 @@ import { NavigationContainer} from '@react-navigation/native';
 import { Actions } from 'react-native-router-flux';
 import { useNavigation } from '@react-navigation/core';
 import {NativeStackNavigationProp} from '@react-navigation/native-stack';
-import { StackNavigatorList } from '../../../types';
+import { AuthNavigatorList, StackNavigatorList } from '../../../types';
 import Ionicons from'react-native-vector-icons/Ionicons';
 import { useFormik } from 'formik';
 import { SignInSchema } from '../utils';
@@ -16,7 +16,7 @@ interface props {
 const LoginForm = (props : props) =>{
 
   const {onLogin} = props;
-  const navigation = useNavigation<NativeStackNavigationProp<StackNavigatorList>>();
+  const navigation = useNavigation<NativeStackNavigationProp<AuthNavigatorList>>();
   const formik = useFormik({
     initialValues: {
       password:'Datdatdat',
@@ -73,6 +73,9 @@ const LoginForm = (props : props) =>{
         </Button>
         <Button mode="contained" 
                 icon="pencil"
+                onPress={() => {
+                  navigation.navigate('Register');
+                }}
                 style={[styles.cusButton]}
                 theme={{ roundness: 0 }}
         >Register

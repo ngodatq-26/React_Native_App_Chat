@@ -36,7 +36,7 @@ const ProfileComponent = () =>{
         <Modal isVisible={visibleModal} style={styles.modal}>
           <View><Text>you want exit this app</Text></View>   
           <View>
-            <Button mode="contained" onPress={()=> navigation.navigate('Login')}>Ok</Button>
+            <Button mode="contained" >Ok</Button>
             <Button mode="contained" onPress={hideModal}>Cancel</Button>
           </View>
         </Modal>

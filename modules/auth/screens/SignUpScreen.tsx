@@ -1,31 +1,30 @@
-import React from 'react';
-import { Image, StyleSheet, Text, useWindowDimensions, View } from 'react-native';
-import { ActivityIndicator, Card, TextInput } from 'react-native-paper';
-import LoginForm from '../components/LoginForm';
-import { createStackNavigator } from '@react-navigation/stack';
-import axios from 'axios';
-import { API_PATHS } from '../../../configs/Api';
 import { useNavigation } from '@react-navigation/native';
 import { NativeStackNavigationProp } from '@react-navigation/native-stack';
-import { AuthNavigatorList, StackNavigatorList } from '../../../types';
+import React from 'react';
+import { Image, StyleSheet, Text, useWindowDimensions, View } from 'react-native';
+import { ActivityIndicator, Card } from 'react-native-paper';
+import { NavigationType } from 'react-router-native';
+import { API_PATHS } from '../../../configs/Api';
+import { AuthNavigatorList } from '../../../types';
 import { fetchAPI } from '../../common/customAxios';
-const LoginScreen= () =>{
-    
-    const [loading,setLoading] = React.useState(false);
+import SignUpForm from '../components/SignUpForm';
+
+
+const SignUpScreen = () =>{
+
     const navigation = useNavigation<NativeStackNavigationProp<AuthNavigatorList>>();
-    const {height} = useWindowDimensions();
+    const [loading,setLoading] = React.useState(false);
     const [error,setError] = React.useState('');
 
-    const onLogin = React.useCallback(async (email : string,password : string) =>{
+    const onSignUp = React.useCallback(async (email : string,password : string) =>{
         setLoading(true);
-        await fetchAPI(API_PATHS.login,'POST',{email : email,password : password})
+        await fetchAPI(API_PATHS.register,'POST',{email : email,password : password})
         .then(user =>{
             if(user?.data.success == "false") {
                 setError(user?.data.message);
             } 
             if(user?.data.success == "true") {
-                
-                setError('ok')
+                navigation.navigate('Login')
             }
 
         }).catch((err)=>{
@@ -34,24 +33,27 @@ const LoginScreen= () =>{
         setLoading(false)
     },[])
 
+    const {height} = useWindowDimensions();
+
     return (
-        <View style={styles.root}>
+        <View>
             <Text>{error}</Text>
             {loading ? <ActivityIndicator animating={true} /> :
           <Card style= {[styles.cardView,{height : height *0.9}]}>
               <View style={styles.imageView}>
                 <Image source={require('../../../src/images/Logo.png')} 
-                        style={[styles.logo,{height : height*0.3 }]}
+                        style={[styles.logo,{height : height*0.15 }]}
                         resizeMode ="contain"
                 />
               </View>
               <View style={styles.formView}>
-                 <LoginForm onLogin={onLogin} loading={loading}/>
+                 <SignUpForm onSignUp = {onSignUp}/>
               </View>
           </Card>}
-       </View>
+        </View>
     )
 }
+
 
 const styles = StyleSheet.create({
     root : {
@@ -79,6 +81,6 @@ const styles = StyleSheet.create({
         display :'flex',
         
     }
-  });
+});
 
-export default LoginScreen;
+export default SignUpScreen;

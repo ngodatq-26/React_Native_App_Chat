@@ -7,7 +7,11 @@ export type TabNavigatorParamsList = {
 }
 
 export type StackNavigatorList = {
-    Main : NavigatorScreenParams<TabNavigatorParamsList>,
+    Main : NavigatorScreenParams<TabNavigatorParamsList>
+}
+
+export type AuthNavigatorList = {
     Login : undefined,
+    Register : undefined
 }
 
