@@ -1,8 +1,8 @@
 import { useNavigation } from '@react-navigation/native';
 import { NativeStackNavigationProp } from '@react-navigation/native-stack';
 import React from 'react';
-import { Image, StyleSheet, Text, useWindowDimensions, View } from 'react-native';
-import { ActivityIndicator, Card } from 'react-native-paper';
+import { Alert, Image, StyleSheet, Text, useWindowDimensions, View } from 'react-native';
+import { ActivityIndicator, Button, Card } from 'react-native-paper';
 import { NavigationType } from 'react-router-native';
 import { API_PATHS } from '../../../configs/Api';
 import { AuthNavigatorList } from '../../../types';
@@ -15,6 +15,22 @@ const SignUpScreen = () =>{
     const navigation = useNavigation<NativeStackNavigationProp<AuthNavigatorList>>();
     const [loading,setLoading] = React.useState(false);
     const [error,setError] = React.useState('');
+    const [text,setText] = React.useState('');
+
+    const createTwoButtonAlert = () =>
+    Alert.alert(
+      "Alert Title",
+      "My Alert Msg",
+      [
+        {
+          text: "Cancel",
+          onPress: () => console.log("Cancel Pressed"),
+          style: "cancel"
+        },
+        { text: "OK", onPress: () => console.log("OK Pressed") }
+      ],
+      { cancelable: false }
+    );
 
     const onSignUp = React.useCallback(async (email : string,password : string) =>{
         setLoading(true);
@@ -22,11 +38,12 @@ const SignUpScreen = () =>{
         .then(user =>{
             if(user?.data.success == "false") {
                 setError(user?.data.message);
+                setText('red');
             } 
             if(user?.data.success == "true") {
-                navigation.navigate('Login')
+                setError(user?.data.message);
+                setText('green');
             }
-
         }).catch((err)=>{
             setError(err);
         }) 
@@ -37,7 +54,7 @@ const SignUpScreen = () =>{
 
     return (
         <View>
-            <Text>{error}</Text>
+            
             {loading ? <ActivityIndicator animating={true} /> :
           <Card style= {[styles.cardView,{height : height *0.9}]}>
               <View style={styles.imageView}>
@@ -46,7 +63,8 @@ const SignUpScreen = () =>{
                         resizeMode ="contain"
                 />
               </View>
-              <View style={styles.formView}>
+              <Text style={{color : text}}>{error}</Text>
+              <View style={styles.formView}>    
                  <SignUpForm onSignUp = {onSignUp}/>
               </View>
           </Card>}
@@ -80,6 +98,9 @@ const styles = StyleSheet.create({
     formView :{
         display :'flex',
         
+    },
+    textError : {
+        color : 'red',
     }
 });
 

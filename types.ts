@@ -8,6 +8,7 @@ export type TabNavigatorParamsList = {
 
 export type StackNavigatorList = {
     Main : NavigatorScreenParams<TabNavigatorParamsList>
+    Chat : undefined
 }
 
 export type AuthNavigatorList = {

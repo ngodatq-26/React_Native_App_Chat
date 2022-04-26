@@ -9,12 +9,14 @@ import { useNavigation } from '@react-navigation/native';
 import { NativeStackNavigationProp } from '@react-navigation/native-stack';
 import { AuthNavigatorList, StackNavigatorList } from '../../../types';
 import { fetchAPI } from '../../common/customAxios';
+import { useSelector } from 'react-redux';
 const LoginScreen= () =>{
     
     const [loading,setLoading] = React.useState(false);
     const navigation = useNavigation<NativeStackNavigationProp<AuthNavigatorList>>();
     const {height} = useWindowDimensions();
     const [error,setError] = React.useState('');
+
 
     const onLogin = React.useCallback(async (email : string,password : string) =>{
         setLoading(true);
@@ -24,7 +26,6 @@ const LoginScreen= () =>{
                 setError(user?.data.message);
             } 
             if(user?.data.success == "true") {
-                
                 setError('ok')
             }
 
@@ -36,7 +37,6 @@ const LoginScreen= () =>{
 
     return (
         <View style={styles.root}>
-            <Text>{error}</Text>
             {loading ? <ActivityIndicator animating={true} /> :
           <Card style= {[styles.cardView,{height : height *0.9}]}>
               <View style={styles.imageView}>
@@ -45,6 +45,7 @@ const LoginScreen= () =>{
                         resizeMode ="contain"
                 />
               </View>
+              <Text style={styles.textError}>{error}</Text>
               <View style={styles.formView}>
                  <LoginForm onLogin={onLogin} loading={loading}/>
               </View>
@@ -78,6 +79,9 @@ const styles = StyleSheet.create({
     formView :{
         display :'flex',
         
+    },
+    textError : {
+        color : 'red',
     }
   });
 

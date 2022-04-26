@@ -14,17 +14,18 @@ import HomeScreen from './modules/Home/screens/HomeScreens';
 import {createStackNavigator} from '@react-navigation/stack';
 import { NavigationContainer } from '@react-navigation/native';
 import { Provider } from 'react-redux';
-import store from "../AwesomeTSProject/redux/configureStore"
+import { store } from './appRedux/configureStore';
 import { MainStackNavigator } from './Stack';
-
 
 
 const App = () =>{
 
   return (
+  <Provider store={store}>
     <NavigationContainer independent={true}>
        <MainStackNavigator />
     </NavigationContainer>
+  </Provider>
   )
 }
 

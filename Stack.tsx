@@ -5,22 +5,22 @@ import HomeScreen from './modules/Home/screens/HomeScreens';
 import {createStackNavigator} from '@react-navigation/stack';
 import { NavigationContainer } from '@react-navigation/native';
 import { Provider } from 'react-redux';
-import store from "../AwesomeTSProject/redux/configureStore"
 import { AuthNavigatorList, StackNavigatorList } from './types';
 import SignUpScreen from './modules/auth/screens/SignUpScreen';
-import CookieManager from '@react-native-cookies/cookies';
 import { ACCESS_TOKEN_KEY } from './utils/constant';
+import messengerScreen from './modules/Messenger/screens/MessengerScreen';
 
 const Stack = createStackNavigator<StackNavigatorList>();
 const Stack2 = createStackNavigator<AuthNavigatorList>();
 
 
 export const MainStackNavigator = () =>{
-  const isLogin = 0;
+  const isLogin = 1;
   return (<>
     { isLogin ?
     <Stack.Navigator  screenOptions={{ headerShown: false }} >
       <Stack.Screen name="Main" component={HomeScreen} />
+      <Stack.Screen name="Chat" component ={messengerScreen} />
     </Stack.Navigator> : 
     <Stack2.Navigator screenOptions={{headerShown : false}}>
        <Stack2.Screen name="Login" component = {LoginScreen} />

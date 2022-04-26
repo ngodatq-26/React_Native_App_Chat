@@ -4,8 +4,7 @@ import { View } from 'react-native';
 const ChatComponent = ()=>{
 
     return (
-        <View>
-            
+        <View>   
         </View>
     )
 }

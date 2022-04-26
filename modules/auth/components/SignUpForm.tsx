@@ -1,5 +1,5 @@
 import React from 'react';
-import { StyleSheet, Text, View } from 'react-native';
+import { Alert, StyleSheet, Text, useWindowDimensions, View } from 'react-native';
 import { Button, TextInput } from 'react-native-paper';
 import { useFormik } from 'formik';
 import { SignUpSchema } from '../utils';
@@ -11,9 +11,10 @@ interface props {
 }
 const SignUpForm = (props : props) =>{
 
+    const {width} = useWindowDimensions();
     const {onSignUp} = props;
     const navigation = useNavigation<NativeStackNavigationProp<AuthNavigatorList>>();
-
+    
     const formik = useFormik({
         initialValues: {
           password:'Datdatdat',
@@ -23,7 +24,8 @@ const SignUpForm = (props : props) =>{
         validationSchema : SignUpSchema,
         onSubmit: values => {
         },
-     });
+    });
+
 
     const RegisterClick = () =>{
        if(!formik.errors.password && !formik.errors.confirmPassword && !formik.errors.email && formik.values.email != ""){
@@ -43,7 +45,7 @@ const SignUpForm = (props : props) =>{
               onChangeText={formik.handleChange('email')}
               onBlur={formik.handleBlur('email')}
           />
-          { formik.touched.email && formik.errors.email ?
+            {formik.touched.email && formik.errors.email ?
               <Text style={{ fontSize: 11, color: 'red' }}>{formik.errors.email}</Text> : null
             }
         </View>
@@ -84,6 +86,11 @@ const SignUpForm = (props : props) =>{
                 theme={{ roundness: 0 }}
         >Register
         </Button>
+        <Text onPress={() =>{
+            navigation.navigate('Login')
+        }} style={[styles.textOr,{marginLeft : width*0.2}]}>
+            if you have account, to login
+        </Text>
       </View>
     )
 }
@@ -97,8 +104,7 @@ const styles = StyleSheet.create({
       },
       textOr : {
         justifyContent : "center",
-        fontSize : 20,
-        margin : 0
+        fontSize : 15,
     }
 })
 
