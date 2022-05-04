@@ -1,5 +1,4 @@
 import { useNavigation } from '@react-navigation/core';
-import { NativeStackNavigationProp } from '@react-navigation/native-stack';
 import React from 'react';
 import { StyleSheet, Text, TouchableOpacity, useWindowDimensions, View } from 'react-native';
 import { ScrollView } from 'react-native';
@@ -7,10 +6,12 @@ import Modal from 'react-native-modal/dist/modal';
 import { Appbar, Avatar, Button, Switch } from 'react-native-paper';
 import Icon from 'react-native-vector-icons/FontAwesome5';
 import Ionicons from 'react-native-vector-icons/Ionicons'
-import { StackNavigatorList } from '../../../types';
+import { auth } from '../../../src/firebase/config';
+import { signOut } from "firebase/auth";
+
 const ProfileComponent = () =>{
+  const navigation = useNavigation();
   
-  const navigation = useNavigation<NativeStackNavigationProp<StackNavigatorList>>();
   const {height} = useWindowDimensions();
   const [switchButton,setSwitchButton] = React.useState(true);
   const [notification,setNotification] = React.useState(true);
@@ -26,6 +27,16 @@ const ProfileComponent = () =>{
     setSwitchButton(!switchButton)
   }
 
+  const SignOutUser=() => {
+    signOut(auth).then(() => {
+      // Sign-out successful.
+      console.log("Sign-out successful");
+      navigation.navigate("Login");
+    }).catch((error) => {
+      // An error happened.
+    });
+  }
+
   return (
     <View style= {styles.container}>
       <Appbar.Header style={styles.Appbar}>
@@ -34,9 +45,9 @@ const ProfileComponent = () =>{
       </Appbar.Header>
       <ScrollView>
         <Modal isVisible={visibleModal} style={styles.modal}>
-          <View><Text>you want exit this app</Text></View>   
+          <View><Text>You want exit this app</Text></View>   
           <View>
-            <Button mode="contained" onPress={()=> navigation.navigate('Login')}>Ok</Button>
+            <Button mode="contained" onPress={SignOutUser}>Ok</Button>
             <Button mode="contained" onPress={hideModal}>Cancel</Button>
           </View>
         </Modal>
@@ -99,7 +110,7 @@ const ProfileComponent = () =>{
 const styles = StyleSheet.create({
   container : {
     display : 'flex',
-    flexDirection : 'column'
+    flexDirection : 'column',
   },
   avatar :{
     justifyContent: 'center',

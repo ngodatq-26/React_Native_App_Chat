@@ -6,10 +6,10 @@ const HomeComponent = () =>{
 
     const [search,setSearch] = React.useState('');
 
-    const handleChangeSearch = (e : any) =>{
+    const handleChangeSearch = (e) =>{
         setSearch(e.target.value)
     }
-
+    
     return(
         <View>
             <Appbar.Header style={styles.Appbar}>
