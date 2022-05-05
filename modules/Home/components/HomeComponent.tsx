@@ -1,15 +1,23 @@
 import React from 'react';
 import { ScrollView, StyleSheet, Text, View } from 'react-native';
 import { Appbar, Avatar, Searchbar } from 'react-native-paper';
+import UserChat from './UserChat';
 
 const HomeComponent = () =>{
 
     const [search,setSearch] = React.useState('');
-
+    const [loading,setLoading] = React.useState(false);
     const handleChangeSearch = (e : any) =>{
         setSearch(e.target.value)
     }
     
+    const [data,setData] = React.useState();
+    
+    const onSearch = React.useCallback(async ()=>{
+        setLoading(true);
+        
+        setLoading(false);
+    },[]);
 
     return(
         <View>
@@ -25,87 +33,7 @@ const HomeComponent = () =>{
                 onChange = {handleChangeSearch}
             />
             <ScrollView>
-                <View style = {styles.viewMember}> 
-                    <View>
-                      <Avatar.Image size={60} source={require('../../../src/images/Avatar/Avatar.jpg')} />
-                    </View>
-                    <View>
-                       <Text style={styles.viewName}>yêu Đạt quá 00 </Text>
-                       <Text style = {styles.viewMes}>kkk</Text>
-                    </View>
-                </View>
-                <View style = {styles.viewMember}> 
-                    <View>
-                      <Avatar.Image size={60} source={require('../../../src/images/Avatar/Avatar.jpg')} />
-                    </View>
-                    <View>
-                       <Text style={styles.viewName}>yêu Đạt quá 01</Text>
-                       <Text style = {styles.viewMes}>kkk</Text>
-                    </View>
-                </View>
-                <View style = {styles.viewMember}> 
-                    <View>
-                      <Avatar.Image size={60} source={require('../../../src/images/Avatar/Avatar.jpg')} />
-                    </View>
-                    <View>
-                       <Text style={styles.viewName}>yêu Đạt quá 02</Text>
-                       <Text style = {styles.viewMes}>kkk</Text>
-                    </View>
-                </View>
-                <View style = {styles.viewMember}> 
-                    <View>
-                      <Avatar.Image size={60} source={require('../../../src/images/Avatar/Avatar.jpg')} />
-                    </View>
-                    <View>
-                       <Text style={styles.viewName}>yêu Đạt quá 02</Text>
-                       <Text style = {styles.viewMes}>kkk</Text>
-                    </View>
-                </View>
-                <View style = {styles.viewMember}> 
-                    <View>
-                      <Avatar.Image size={60} source={require('../../../src/images/Avatar/Avatar.jpg')} />
-                    </View>
-                    <View>
-                       <Text style={styles.viewName}>yêu Đạt quá 02</Text>
-                       <Text style = {styles.viewMes}>kkk</Text>
-                    </View>
-                </View>
-                <View style = {styles.viewMember}> 
-                    <View>
-                      <Avatar.Image size={60} source={require('../../../src/images/Avatar/Avatar.jpg')} />
-                    </View>
-                    <View>
-                       <Text style={styles.viewName}>yêu Đạt quá 02</Text>
-                       <Text style = {styles.viewMes}>kkk</Text>
-                    </View>
-                </View>
-                <View style = {styles.viewMember}> 
-                    <View>
-                      <Avatar.Image size={60} source={require('../../../src/images/Avatar/Avatar.jpg')} />
-                    </View>
-                    <View>
-                       <Text style={styles.viewName}>yêu Đạt quá 02</Text>
-                       <Text style = {styles.viewMes}>kkk</Text>
-                    </View>
-                </View>
-                <View style = {styles.viewMember}> 
-                    <View>
-                      <Avatar.Image size={60} source={require('../../../src/images/Avatar/Avatar.jpg')} />
-                    </View>
-                    <View>
-                       <Text style={styles.viewName}>yêu Đạt quá 02</Text>
-                       <Text style = {styles.viewMes}>kkk</Text>
-                    </View>
-                </View>
-                <View style = {styles.viewMember}> 
-                    <View>
-                      <Avatar.Image size={60} source={require('../../../src/images/Avatar/Avatar.jpg')} />
-                    </View>
-                    <View>
-                       <Text style={styles.viewName}>yêu Đạt quá 02</Text>
-                       <Text style = {styles.viewMes}>kkk</Text>
-                    </View>
-                </View>
+                <UserChat />
             </ScrollView>
         </View>
     )

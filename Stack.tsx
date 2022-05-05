@@ -7,20 +7,21 @@ import { NavigationContainer } from '@react-navigation/native';
 import { Provider } from 'react-redux';
 import { AuthNavigatorList, StackNavigatorList } from './types';
 import SignUpScreen from './modules/auth/screens/SignUpScreen';
+import CookieManager from '@react-native-cookies/cookies';
 import { ACCESS_TOKEN_KEY } from './utils/constant';
-import messengerScreen from './modules/Messenger/screens/MessengerScreen';
+import ChatScreen from './modules/chat/screens/ChatScreen';
 
 const Stack = createStackNavigator<StackNavigatorList>();
 const Stack2 = createStackNavigator<AuthNavigatorList>();
 
 
 export const MainStackNavigator = () =>{
-  const isLogin = 1;
+  const isLogin = 0;
   return (<>
     { isLogin ?
     <Stack.Navigator  screenOptions={{ headerShown: false }} >
       <Stack.Screen name="Main" component={HomeScreen} />
-      <Stack.Screen name="Chat" component ={messengerScreen} />
+
     </Stack.Navigator> : 
     <Stack2.Navigator screenOptions={{headerShown : false}}>
        <Stack2.Screen name="Login" component = {LoginScreen} />
