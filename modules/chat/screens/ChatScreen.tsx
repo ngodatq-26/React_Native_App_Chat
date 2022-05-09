@@ -3,31 +3,43 @@ import React from 'react'
 import { Button, Keyboard, KeyboardAvoidingView, Platform, StyleSheet, Text, TouchableWithoutFeedback, useWindowDimensions, View } from 'react-native'
 import { ScrollView } from 'react-native-gesture-handler'
 import { Appbar, Avatar, TextInput } from 'react-native-paper'
+import FriendChat from '../components/FriendChat'
+import MeChat from '../components/MeChat'
 
 const ChatScreen = () => {
   const navigation = useNavigation();
   const {height} = useWindowDimensions();
 
   return (   
-    <KeyboardAvoidingView
-      behavior={Platform.OS === "ios" ? "padding" : "height"}
-      style={styles.container}
-    >
-      <TouchableWithoutFeedback onPress={Keyboard.dismiss}>
-        <View style={styles.inner}>
-        <View>
+    <View style={styles.container}>
+         <View>
           <Appbar.Header style={[styles.Appbar]}>
                <Appbar.BackAction onPress={() => navigation.goBack()}/>
                <Appbar.Content title="Status" />
             </Appbar.Header>
          </View>
-          <View style={styles.textInput}></View>
-          <View style={styles.btnContainer}>
-              <TextInput placeholder="message" />
-          </View>
-        </View>
-      </TouchableWithoutFeedback>
-    </KeyboardAvoidingView>
+         <ScrollView>
+           <FriendChat />
+           <MeChat />
+           <FriendChat />
+           <FriendChat />
+           <FriendChat />
+           <FriendChat />
+           <MeChat />
+           <FriendChat />
+           <MeChat />
+           <MeChat />
+         </ScrollView>
+         <KeyboardAvoidingView
+              behavior={Platform.OS === "ios" ? "padding" : "position"}
+          >
+            <TouchableWithoutFeedback onPress={Keyboard.dismiss}>
+                <View >
+                    <TextInput style={{display : 'flex'}} placeholder="message" />
+                </View>
+            </TouchableWithoutFeedback>
+         </KeyboardAvoidingView>
+    </View>
 
   )
 }
