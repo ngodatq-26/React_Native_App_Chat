@@ -16,12 +16,12 @@ const Stack2 = createStackNavigator<AuthNavigatorList>();
 
 
 export const MainStackNavigator = () =>{
-  const isLogin = 0;
+  const isLogin = 1;
   return (<>
     { isLogin ?
     <Stack.Navigator  screenOptions={{ headerShown: false }} >
       <Stack.Screen name="Main" component={HomeScreen} />
-
+      <Stack.Screen name="Chat" component={ChatScreen} />
     </Stack.Navigator> : 
     <Stack2.Navigator screenOptions={{headerShown : false}}>
        <Stack2.Screen name="Login" component = {LoginScreen} />

@@ -1,10 +1,15 @@
+import { useNavigation } from '@react-navigation/native';
+import { NativeStackNavigationProp } from '@react-navigation/native-stack';
 import React from 'react'
-import { StyleSheet, Text, View } from 'react-native'
+import { StyleSheet, Text, TouchableOpacity, View } from 'react-native'
 import { Avatar } from 'react-native-paper'
+import { StackNavigatorList } from '../../../types';
 
 const UserChat = () => {
+  const navigation = useNavigation<NativeStackNavigationProp<StackNavigatorList>>();
+
   return (
-    <View style = {styles.viewMember}> 
+    <TouchableOpacity onPress={() => navigation.navigate('Chat')} style = {styles.viewMember}> 
                     <View>
                       <Avatar.Image size={60} source={require('../../../src/images/Avatar/Avatar.jpg')} />
                     </View>
@@ -12,7 +17,7 @@ const UserChat = () => {
                        <Text style={styles.viewName}>yêu Đạt quá 00 </Text>
                        <Text style = {styles.viewMes}>kkk</Text>
                     </View>
-    </View>
+    </TouchableOpacity>
   )
 }
 
