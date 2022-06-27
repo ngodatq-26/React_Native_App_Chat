@@ -7,7 +7,7 @@ export type TabNavigatorParamsList = {
 }
 
 export type StackNavigatorList = {
-    Main : NavigatorScreenParams<TabNavigatorParamsList>
+    Main : NavigatorScreenParams<TabNavigatorParamsList>,
     Chat : undefined
 }
 

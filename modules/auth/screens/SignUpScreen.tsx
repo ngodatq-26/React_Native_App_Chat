@@ -82,7 +82,7 @@ const styles = StyleSheet.create({
     cardView : {
         alignItems : 'center',
         padding : 20,
-        margin : 'auto',
+        margin : 20,
         width : '100%',
         display : 'flex',
         flexDirection : 'column',
